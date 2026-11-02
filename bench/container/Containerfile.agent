@@ -12,7 +12,13 @@ USER agent
 # IS_SANDBOX lets Claude Code run with --dangerously-skip-permissions; the container is the sandbox.
 ENV IS_SANDBOX=1 \
     DISABLE_AUTOUPDATER=1
-RUN agent-browser install
+# Chrome for Testing has no Linux ARM64 build, so on ARM hosts (e.g. Apple Silicon) agent-browser
+# uses Playwright's Chromium from the base image instead; run-agent.sh exports its path.
+RUN if [ "$(uname -m)" = aarch64 ]; then \
+      cd /home/agent/work && node -e 'import("playwright").then((m) => console.log(m.chromium.executablePath()))' > /home/agent/.agent-browser-chromium; \
+    else \
+      agent-browser install; \
+    fi
 
 COPY --chown=agent:agent run-agent.sh setup-tooling.sh mcp-probe.sh /home/agent/
 ENTRYPOINT ["/home/agent/run-agent.sh"]

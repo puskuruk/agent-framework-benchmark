@@ -17,6 +17,10 @@ set -euo pipefail
 OUT=/out
 WORK=/home/agent/work
 mkdir -p "$OUT"
+# Set on ARM images only (see Containerfile.agent).
+if [ -f /home/agent/.agent-browser-chromium ]; then
+  export AGENT_BROWSER_EXECUTABLE_PATH="$(cat /home/agent/.agent-browser-chromium)"
+fi
 
 /home/agent/setup-tooling.sh "$FRAMEWORK" /home/agent/mcp.json "$OUT/tooling-versions.json" > "$OUT/tooling.log" 2>&1
 
@@ -27,6 +31,8 @@ mkdir -p "$OUT"
   echo "effort=$EFFORT"
   echo "claude_code=$(claude --version)"
   echo "agent_browser=$(agent-browser --version 2>/dev/null || true)"
+  echo "arch=$(uname -m)"
+  echo "agent_browser_chromium=${AGENT_BROWSER_EXECUTABLE_PATH:-chrome-for-testing}"
   echo "node=$(node --version)"
   echo "npm=$(npm --version)"
   echo "playwright=$(npx playwright --version | sed 's/^Version //')"
