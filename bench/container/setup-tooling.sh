@@ -92,7 +92,14 @@ case "$FRAMEWORK" in
     # up front because agents don't always use create-react-router. Docs ship in node_modules.
     skill remix-run/react-router --skill react-router
     ;;
-  tanstack-start | solidstart | qwik | gracile | vanilla)
+  gea)
+    # https://github.com/dashersw/gea (README: `npx skills add dashersw/gea`). Only gea-framework:
+    # gea-ui-components targets the Tailwind-based @geajs/ui, which SPEC.md forbids, and the
+    # other skills are for Gea's own repo and React migration.
+    skill dashersw/gea --skill gea-framework
+    ;;
+  tanstack-start | solidstart | qwik | gracile | vanilla | gea-no-skill)
+    # gea-no-skill: control for the gea key, to measure the skill's effect.
     # No official agent tooling (TanStack removed its MCP server in favour of its CLI).
     ;;
   *)

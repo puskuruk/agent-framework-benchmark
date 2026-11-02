@@ -49,7 +49,7 @@ Agents, and the apps they write, only ever run inside containers.
 
 | Option | Default | |
 | --- | --- | --- |
-| `--frameworks=a,b` or `all` | (required) | Keys from `bench/frameworks.mjs`: `next`, `nuxt`, `tanstack-start`, `react-router`, `solidstart`, `sveltekit`, `angular`, `astro`, `qwik`, `gracile`, `hono-htmx`, `vanilla` |
+| `--frameworks=a,b` or `all` | (required) | Keys from `bench/frameworks.mjs`: `next`, `nuxt`, `tanstack-start`, `react-router`, `solidstart`, `sveltekit`, `angular`, `astro`, `qwik`, `gracile`, `hono-htmx`, `gea`, `gea-no-skill`, `vanilla` |
 | `--iterations=N` | 1 | Agent runs per framework |
 | `--model=ID` | `claude-opus-5-5` | Passed to `claude --model` |
 | `--effort=LEVEL` | `medium` | Passed to `claude --effort` (`low`, `medium`, `high`, `xhigh`, `max`) |

@@ -12,6 +12,9 @@ export const FRAMEWORKS = {
   qwik: 'Qwik with Qwik City',
   gracile: 'Gracile with Lit',
   'hono-htmx': 'Hono and htmx',
+  // Same label for both Gea keys so the only difference between them is the skill.
+  gea: 'Geajs',
+  'gea-no-skill': 'Geajs',
   vanilla: 'vanilla JavaScript or TypeScript with Vite, without a UI framework',
 };
 
